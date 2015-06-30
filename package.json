@@ -1,0 +1,28 @@
+{
+  "name": "signaljs",
+  "version": "1.0.0",
+  "description": "A library that helps apply some common signal processing techniques (filters, modulations) to series of numbers, which can also be processed while they are passed to the library.",
+  "main": "signal.js",
+  "scripts": {
+    "test": "test-signal"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mrgreenh/Signal.js"
+  },
+  "keywords": [
+    "signal",
+    "filter",
+    "lfo",
+    "adsr",
+    "noise",
+    "numbers",
+    "series"
+  ],
+  "author": "Carlo Andrea Conte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrgreenh/Signal.js/issues"
+  },
+  "homepage": "https://github.com/mrgreenh/Signal.js"
+}
