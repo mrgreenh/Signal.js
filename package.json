@@ -24,5 +24,13 @@
   "bugs": {
     "url": "https://github.com/mrgreenh/Signal.js/issues"
   },
-  "homepage": "https://github.com/mrgreenh/Signal.js"
+  "homepage": "https://github.com/mrgreenh/Signal.js",
+  "devDependencies": {
+    "babelify": "^6.1.3",
+    "browserify": "^10.2.6",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "node-libs-browser": "^0.5.2"
+  },
+  "dependencies": {}
 }
