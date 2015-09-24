@@ -8,6 +8,18 @@ class LowPass extends SignalModule {
         }
         return sum ? sum/this._buffer.length : 0;
     }
+
+    static getConfigurationSchema(){
+        var conf = super.getConfigurationSchema();
+        return Object.assign(conf, {
+            bufferSize: {
+                display: "Buffer Size",
+                type: "number",
+                range: [2,100],
+                value: 100
+            }
+        });
+    }
 }
 
 export default LowPass;

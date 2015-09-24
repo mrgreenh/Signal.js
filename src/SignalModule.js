@@ -34,6 +34,14 @@ class SignalModule {
     addChainPredecessor(module){
         this._chainPredecessor = module;
     }
+
+    getConfigurationSchema(){
+        return {};
+    }
+
+    static getConfigurationSchema(){
+        return {};
+    }
 }
 
 export default SignalModule;
