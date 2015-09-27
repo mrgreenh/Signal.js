@@ -37,6 +37,10 @@ class Signal {
     static getConfigurationSchemaForModule(moduleName){
         return ModulesBag.getModule(moduleName).getConfigurationSchema();
     }
+
+    static getModule(moduleName){
+        return ModulesBag.getModule(moduleName);
+    }
 }
 
 export default Signal;
