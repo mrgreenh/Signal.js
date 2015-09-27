@@ -1,5 +1,5 @@
 # Signal.js
-Real-time signal processing library. Really, REALLY at its early stages. But stay tuned for more (I'm develooping this as part of Synesthesia, another project that requires stuff like this), or feel free to fork and add modules (a frequency filter can be around 4 lines of code + sample configuration).
+Real-time signal processing library. Really, REALLY at its early stages. But stay tuned for more (I'm developing this as part of Synesthesia, another project that requires stuff like this), or feel free to fork and add modules (a frequency filter can be around 4 lines of code + sample configuration).
 
 ##Usage
 
