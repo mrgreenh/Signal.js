@@ -1,9 +1,20 @@
 import ModulesBag from './modules/ModulesBag'
 
 class Signal {
-    constructor(configuration){
+    constructor(configuration){ //Configuration is an array
         //TODO implement configuration parsing
-        this._processingChain = new LowPass(10); //This should accept the single signal configuration
+        this._processingChain = this._parseConfiguration(configuration); //This should accept the single signal configuration
+    }
+
+    _parseConfiguration(configuration, prevModule){
+        if(!configuration || !configuration.length) return;
+        var newModuleConfiguration = configuration.shift();
+        var newModuleClass = ModulesBag.getModulesMap()[newModuleConfiguration.type]
+        var newModule = new newModuleClass(newModuleConfiguration);
+        if(prevModule) prevModule.chain(newModule);
+        this._parseConfiguration(configuration, newModule);
+
+        return newModule;
     }
 
     push(value){

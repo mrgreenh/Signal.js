@@ -3,7 +3,7 @@ import LowPass from './LowPass'
 class ModulesBag {
     static getModulesMap(){
         return {
-                    LowPass: LowPass
+                    [LowPass.MODULE_NAME]: LowPass
                 }
     }
 

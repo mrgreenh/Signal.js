@@ -1,6 +1,12 @@
 import SignalModule from '../SignalModule'
 
 class LowPass extends SignalModule {
+
+    constructor(configuration){
+        super(configuration.bufferSize.value);
+        //Nothing else to add for now but other modules might have more to say
+    }
+
     _processOutput(){
         var sum = 0;
         for(var value of this._buffer.iterate()){
@@ -12,6 +18,7 @@ class LowPass extends SignalModule {
     static getConfigurationSchema(){
         var conf = super.getConfigurationSchema();
         return Object.assign(conf, {
+            type: LowPass.MODULE_NAME,
             bufferSize: {
                 display: "Buffer Size",
                 type: "number",
@@ -21,5 +28,7 @@ class LowPass extends SignalModule {
         });
     }
 }
+
+LowPass.MODULE_NAME = "LowPass";
 
 export default LowPass;

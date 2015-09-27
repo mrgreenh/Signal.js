@@ -1,7 +1,7 @@
 import SignalBuffer from './SignalBuffer'
 
 class SignalModule {
-    constructor(bufferSize){
+    constructor(bufferSize){ //Update to accept a configuration object
         this._buffer = new SignalBuffer(bufferSize);
     }
 
