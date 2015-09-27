@@ -41,6 +41,6 @@ var outputSignal = [];
 var inputSignal = [];
 
 for(let val of inputSignal){ //Don't try this at home
-    inpusSignal.push(processingPipeline.push(val));
+    outputSignal.push(processingPipeline.push(val));
 }
 ```
