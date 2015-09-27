@@ -1,9 +1,11 @@
 import LowPass from './LowPass'
+import Multiplier from './Multiplier'
 
 class ModulesBag {
     static getModulesMap(){
         return {
-                    [LowPass.MODULE_NAME]: LowPass
+                    [LowPass.MODULE_NAME]: LowPass,
+                    [Multiplier.MODULE_NAME]: Multiplier
                 }
     }
 

@@ -31,11 +31,7 @@ class SignalBuffer {
     }
 
     getFirstItem(){
-        return this._firstItem;
-    }
-
-    updateLastValue(newValue){
-        this._lastItem = newValue;
+        return this._firstItem.value;
     }
 
     *iterate(){

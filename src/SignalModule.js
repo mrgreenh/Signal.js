@@ -7,7 +7,7 @@ class SignalModule {
 
     queueSample(value){
         if(isNaN(value)) throw "Signals only accept numbers";
-        if(this.hasOwnProperty("chainedModule")){
+        if(this.hasOwnProperty("_chainedModule")){
             let backPropagatedValue = this._chainedModule.queueSample(value);
             this._buffer.push(backPropagatedValue);
         }else{
