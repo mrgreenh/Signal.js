@@ -37,10 +37,9 @@ class SignalBuffer {
     *iterate(){
         var counter = 0;
         var currentItem = this._firstItem;
-        while(currentItem.hasOwnProperty("next")){
+        for(var i=0; i<this.length; i++){
             yield currentItem.value;
             currentItem = currentItem.next;
-            counter++;
         }
 
         return;
