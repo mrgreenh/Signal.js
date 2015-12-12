@@ -1,22 +1,22 @@
 import SignalModule from '../SignalModule'
 
-class Multiplier extends SignalModule {
+class Offset extends SignalModule {
 
     constructor(configuration){
         super(1);
-        this._factor = configuration.factor.value;
+        this._offset = configuration.offset.value;
     }
 
     _processOutput(){
-        return this._buffer.getFirstItem()*parseFloat(this._factor);
+        return this._buffer.getFirstItem()+parseFloat(this._offset);
     }
 
     static getConfigurationSchema(){
         var conf = super.getConfigurationSchema();
         return Object.assign(conf, {
-            type: Multiplier.MODULE_NAME,
-            factor: {
-                display: "Factor",
+            type: Offset.MODULE_NAME,
+            offset: {
+                display: "Offset",
                 type: "number",
                 range: [-1000,10000],
                 value: 1
@@ -25,6 +25,6 @@ class Multiplier extends SignalModule {
     }
 }
 
-Multiplier.MODULE_NAME = "Multiplier";
+Offset.MODULE_NAME = "Offset";
 
-export default Multiplier;
+export default Offset;
