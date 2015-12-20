@@ -2,11 +2,11 @@ import ModulesBag from './modules/ModulesBag'
 
 class Signal {
     constructor(configuration){ //Configuration is an array
-        //TODO implement configuration parsing
         this._processingChain = this._parseConfiguration(configuration); //This should accept the single signal configuration
     }
 
     _parseConfiguration(configuration, prevModule){
+        //TODO fix bug that wipes out configuration
         if(!configuration || !configuration.length) return;
         var newModuleConfiguration = configuration.shift();
         var newModuleClass = ModulesBag.getModulesMap()[newModuleConfiguration.type]
@@ -18,7 +18,9 @@ class Signal {
     }
 
     push(value){
-        return this._processingChain.queueSample(value);
+        if(this._processingChain)
+            return this._processingChain.queueSample(value);
+        else return undefined;
     }
 
     output(){
