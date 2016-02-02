@@ -3,6 +3,5 @@ _site
 .DS_Store
 css/.DS_Store
 dist/.DS_Store
-node_modules/
 src/.DS_Store
 webpack.congif.js
