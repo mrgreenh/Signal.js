@@ -1,23 +1,20 @@
 ---
-layout: default
+layout: home
 ---
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <section class="sensational-header">
+      <h1>Signal <strong>JS</strong></h1>
+      <h2>Let your emotions animate your feelings. Or let your signals animate your pages. Or let this be yet another Github project with a grand-sounding description. Whatev.</h2>
+      <div id="signal-ui-container">
+          
+      </div>
+  </section>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <section>
+      <p>Signal JS</p>
+      <p>Let your emotions animate. Or let your signals do that. Whatev. 99 seconds srsly?!</p>
+  </section>
 
 </div>

@@ -162,7 +162,23 @@
  * Page content
  */
 .page-content {
+    &.unpadded-page-content{
+        padding: 0px;
+    }
     padding: $spacing-unit 0;
+    .wrapper {
+        padding:0px;
+        width:100%;
+        margin:0px;
+        max-width: 100%;
+
+        section {
+            p {
+                @include paragraph-padding;
+            }
+        }
+
+    }
 }
 
 .page-heading {
