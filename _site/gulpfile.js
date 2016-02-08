@@ -21,10 +21,10 @@ gulp.task('signalui', function() {
     entries: './signal_editor/src/main.jsx',
     extensions: ['.jsx'],
     debug: true,
-    transform: [babelify.configure(babelify.configure({
+    transform: [babelify.configure({
         optional: "runtime",
-        presets: ["react"]
-    }))]
+        presets: ["stage-1"]
+    })]
     }).bundle()
     .on("error", function (err) { console.log("Error: " + err.message); })
     .pipe(source('main.js'))

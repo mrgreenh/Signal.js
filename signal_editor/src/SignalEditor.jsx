@@ -4,7 +4,7 @@ import SignalModuleEditor from './SignalModuleEditor.jsx'
 
 class SignalEditor extends React.Component{
     render(){
-        var modules = this.props.configuration.map((conf, index) => {
+        var modules = this.props.modules.map((conf, index) => {
             return <li key={index}><SignalModuleEditor configuration={conf}/></li>;
         });
 

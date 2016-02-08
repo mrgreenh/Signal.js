@@ -1,18 +1,24 @@
-import React from 'react';
+import React from 'react'
 import Signal from '../../src/signal.js'
-import Slider from 'material-ui/lib/slider';
-import RadioButton from 'material-ui/lib/radio-button';
-import RadioButtonGroup from 'material-ui/lib/radio-button-group';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import TextField from 'material-ui/lib/text-field';
+import Slider from 'material-ui/lib/slider'
+import RadioButton from 'material-ui/lib/radio-button'
+import RadioButtonGroup from 'material-ui/lib/radio-button-group'
+import MenuItem from 'material-ui/lib/menus/menu-item'
+import TextField from 'material-ui/lib/text-field'
+import reactor from './reactor.js'
+import getters from './getters.js'
+import ThemeManager from 'material-ui/lib/styles/theme-manager'
+import ThemeDecorator from 'material-ui/lib/styles/theme-decorator'
+import darkTheme from 'material-ui/lib/styles/raw-themes/dark-raw-theme.js'
 
+@ThemeDecorator(ThemeManager.getMuiTheme(darkTheme))
 class SignalModuleEditor extends React.Component{
     _getSliderRange(currentField){
-        var min = currentField.range[0];
-        var max = currentField.range[1];
+        var min = currentField.get("range").get(0);
+        var max = currentField.get("range").get(1);
         var range = max - min;
 
-        var value = currentField.value;
+        var value = currentField.get("value");
         var offsettedValue = value - min;
         var normalizedValue = offsettedValue/range;
 
@@ -31,12 +37,12 @@ class SignalModuleEditor extends React.Component{
     render(){
         var signalData = this.props.configuration;
 
-        var configurationFields = Object.keys(signalData).map((key, index) => {
-            var currentField = signalData[key];
+        var configurationFields = signalData.map((value, key) => {
+            var currentField = signalData.get(key);
             if(key=="type") return;
 
             var input;
-            switch(currentField.type){
+            switch(currentField.get("type")){
                 case "number":
                     var range = this._getSliderRange(currentField);
                     input = <Slider description={currentField.display}
@@ -46,32 +52,32 @@ class SignalModuleEditor extends React.Component{
                                     onChange={this._getValueFromSlider} />;
                     break;
                 case "multiselection":
-                    var options = Object.keys(currentField.options).map((key) => {
-                        return <RadioButton key={key} value={key} label={currentField.options[key]}/>;
-                    });
+                    var options = currentField.get("options").map((value, key) => {
+                        return <RadioButton key={key} value={key} label={value}/>;
+                    }).toList();
                     input = (
-                              <RadioButtonGroup description={currentField.display} name="shipSpeed" defaultSelected="not_light">
+                              <RadioButtonGroup description={currentField.get("display")} name="shipSpeed" defaultSelected="not_light">
                                 {options}
                               </RadioButtonGroup>
                             )
                     break;
                 default: //It's not even an object
-                    input = <TextField  defaultValue={currentField.value}
-                                        description={currentField.display}
+                    input = <TextField  defaultValue={currentField.get("value")}
+                                        description={currentField.get("display")}
                                         onChange={this._handleChange}/>;
                     break;
             }
 
             return (
-                    <li key={index}>
+                    <li key={key}>
                         {input}
                     </li>
                 );
-        });
+        }).toList();
 
         return (
                 <div className="module-editor">
-                    <strong>{signalData.type}</strong>
+                    <strong>{signalData.get("type")}</strong>
                     <div>
                         <ul>
                             {configurationFields}
