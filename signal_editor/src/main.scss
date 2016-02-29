@@ -1,3 +1,80 @@
+@mixin no-select(){
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 #signal-ui-container {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     min-height: 300px;
+
+    ul {
+      list-style-type: none;
+      text-indent: 0;
+      margin: 0px;
+    }
+
+    .module-editor{
+      position: relative;
+      color: rgba(255,255,255,.4);
+      clear: both;
+      min-height: 100px;
+      margin: 0px auto;
+      width: 80%;
+      border-radius: 3px;
+      border: solid rgba(255, 255, 255, 0.4) 1px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.23+0,0+100;White+to+Transparent */
+      background: -moz-linear-gradient(top,  rgba(255,255,255,0.23) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,0.23) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(255,255,255,0.23) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+      .module-name{
+        -ms-transform: rotate(-90deg); /* IE 9 */
+        -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        position: absolute;
+        left: 12px;
+        top: 100%;
+        padding: 0 0 0 10px;
+
+        &+.module-name-background {
+          width:50px;
+          position: absolute;
+          left:0px;
+          bottom:0px;
+          top:0px;
+          background-color: rgba(255, 255, 255,.1);
+        }
+      }
+      .module-controls-container{
+        width:calc( 100% - 120px );
+        margin-left:70px;
+
+        .control-label {
+          margin: 10px 0 0;
+          padding: 0;
+          small {
+            font-weight: lighter;
+            font-size: 0.6em
+          }
+        }
+      }
+    }
+
+}
+
+.module-arrow {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  color: rgba(255,255,255,.2);
+  font-size: 35px;
+  text-align: center;
+  line-height: 1em;
+  height: 1em;
 }

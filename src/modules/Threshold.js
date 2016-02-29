@@ -9,7 +9,7 @@ class Threshold extends SignalModule {
     }
 
     _processOutput(){
-        
+        var result = 0;
         for(var value of this._buffer.iterate()){
             if(value >= this._threshold) result = value;
             else result = 0;

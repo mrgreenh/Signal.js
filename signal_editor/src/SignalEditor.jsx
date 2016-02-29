@@ -1,11 +1,17 @@
 import React from 'react';
-import Signal from '../../src/signal.js'
 import SignalModuleEditor from './SignalModuleEditor.jsx'
+import SignalViewer from './SignalViewer.jsx'
+import ImmutableComponent from './ImmutableComponent.js'
 
-class SignalEditor extends React.Component{
+class SignalEditor extends ImmutableComponent{
     render(){
         var modules = this.props.modules.map((conf, index) => {
-            return <li key={index}><SignalModuleEditor configuration={conf}/></li>;
+            return (
+                    <li key={index}>
+                      <SignalModuleEditor configuration={conf} moduleIndex={index}/>
+                      <div className="module-arrow">&#x2771;</div>
+                    </li>)
+                    ;
         });
 
         return (
@@ -13,6 +19,7 @@ class SignalEditor extends React.Component{
                     <ul>
                         {modules}
                     </ul>
+                    <SignalViewer delayedSignalValue={this.props.delayedSignalValue} signalValue={this.props.signalValue} />
                 </div>
             );
     }

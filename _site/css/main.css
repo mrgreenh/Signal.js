@@ -472,27 +472,28 @@ pre {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0c003a+0,542e2e+100 */
   background: #0c003a;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #0c003a 0%, #542e2e 100%);
+  background: -moz-linear-gradient(bottom, #0c003a 0%, #542e2e 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #0c003a 0%, #542e2e 100%);
+  background: -webkit-linear-gradient(bottom, #0c003a 0%, #542e2e 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #0c003a 0%, #542e2e 100%);
+  background: linear-gradient(to top, #0c003a 0%, #542e2e 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c003a', endColorstr='#542e2e',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#542e2e', endColorstr='#0c003a',GradientType=0 );
   /* IE6-9 */
   min-height: 300px;
   padding: 30px; }
   .sensational-header h1, .sensational-header h2 {
     text-align: center;
-    font-size: 25px;
-    color: #fff;
-    opacity: 0.4; }
+    font-size: 20px;
+    color: #fff; }
   .sensational-header h1 {
     font-family: 'diner-fattregular';
-    font-size: 120px;
-    font-weight: 300; }
+    font-size: 140px;
+    font-weight: 300;
+    line-height: 1em; }
     .sensational-header h1 strong {
       font-size: 0.8em;
       font-weight: 100; }
   .sensational-header h2 {
+    opacity: 0.4;
     font-weight: 200; }

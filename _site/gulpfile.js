@@ -19,11 +19,10 @@ gulp.task('signallib', function() {
 gulp.task('signalui', function() {
     browserify({
     entries: './signal_editor/src/main.jsx',
-    extensions: ['.jsx'],
+    extensions: ['.jsx', '.js'],
     debug: true,
     transform: [babelify.configure({
-        optional: "runtime",
-        presets: ["stage-1"]
+        presets: ["react", "es2015"]
     })]
     }).bundle()
     .on("error", function (err) { console.log("Error: " + err.message); })
@@ -43,8 +42,10 @@ gulp.task("watch", function(){
 
 gulp.task("watchui", function(){
     gulp.watch('./signal_editor/src/**/*.jsx', ['signalui'])
+    gulp.watch('./signal_editor/src/**/*.js', ['signalui'])
+    gulp.watch('./src/**/*.js', ['signalui'])
     gulp.watch('./signal_editor/src/**/*.scss', ['styles'])
 });
 
 gulp.task('default', ['signallib', 'watch'])
-gulp.task('signal_editor', ['signalui', 'styles', 'watchui'])
+gulp.task('signal_editor', ['watchui'])

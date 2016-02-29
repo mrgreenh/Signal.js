@@ -12,10 +12,10 @@ class WhiteNoise extends SignalModule {
         var noiseValue = Math.random();
         for(var value of this._buffer.iterate()){
             switch(this._operator){
-                case 0: // sum
+                case "addition": // sum
                     result = value + noiseValue;
                     break;
-                case 1:
+                case "product":
                     result = value * noiseValue;
                     break;
             }
@@ -29,12 +29,12 @@ class WhiteNoise extends SignalModule {
             type: WhiteNoise.MODULE_NAME,
             operator: {
                 display: "Operator",
-                type: "multiselection",
+                type: "description",
                 options: {
-                    0: "addition",
-                    1: "product"
+                    "addition": "addition",
+                    "product": "product"
                 },
-                value: 0
+                value: "addition"
             }
         });
     }
