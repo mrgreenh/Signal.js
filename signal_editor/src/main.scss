@@ -5,6 +5,8 @@
 }
 
 #signal-ui-container {
+    max-width: 1000px;
+    margin: auto;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -15,7 +17,7 @@
       list-style-type: none;
       text-indent: 0;
       margin: 0px;
-    }
+  }
 
     .module-editor{
       position: relative;
@@ -24,12 +26,12 @@
       min-height: 100px;
       margin: 0px auto;
       width: 80%;
-      border-radius: 3px;
-      border: solid rgba(255, 255, 255, 0.4) 1px;
-      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.23+0,0+100;White+to+Transparent */
-      background: -moz-linear-gradient(top,  rgba(255,255,255,0.23) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(top,  rgba(255,255,255,0.23) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom,  rgba(255,255,255,0.23) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      border: solid rgba(255, 255, 255, 0.2) 1px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+50,ffffff+50,ffffff+100&0.07+0,0.07+50,0+51,0+51,0+51,0+100 */
+      background: -moz-linear-gradient(-20deg,  rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0) 51%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(-20deg,  rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.07) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(160deg,  rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.07) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1fffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 
       .module-name{
@@ -69,12 +71,9 @@
 }
 
 .module-arrow {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-  transform: rotate(90deg);
   color: rgba(255,255,255,.2);
-  font-size: 35px;
+  font-size: 20px;
   text-align: center;
-  line-height: 1em;
-  height: 1em;
+  line-height: 30px;
+  height: 30px;
 }

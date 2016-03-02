@@ -13,7 +13,7 @@ class SignalActionEmitter {
                   display: "Frames",
                   type: "number",
                   range: [0,200],
-                  value: 2
+                  value: 3
               }
           },
         ];

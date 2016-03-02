@@ -468,6 +468,10 @@ pre {
   .highlight .il {
     color: #099; }
 
+body {
+  background-color: #0c003a;
+  color: #aaa; }
+
 .sensational-header {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0c003a+0,542e2e+100 */
   background: #0c003a;

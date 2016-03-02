@@ -41,7 +41,7 @@ export default Store({
               display: "Buffer Size",
               type: "number",
               range: [1,20],
-              value: 3
+              value: 6
             }
           }
       ],

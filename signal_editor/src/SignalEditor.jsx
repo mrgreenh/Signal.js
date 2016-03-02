@@ -9,7 +9,7 @@ class SignalEditor extends ImmutableComponent{
             return (
                     <li key={index}>
                       <SignalModuleEditor configuration={conf} moduleIndex={index}/>
-                      <div className="module-arrow">&#x2771;</div>
+                      <div className="module-arrow">&#x2193;</div>
                     </li>)
                     ;
         });
