@@ -8,6 +8,7 @@ class LowPass extends SignalModule {
     }
 
     _processOutput(){
+        //One new value was just pushed into the buffer. The output on the other side is...
         var sum = 0;
         for(var value of this._buffer.iterate()){
             sum += value;
@@ -16,6 +17,9 @@ class LowPass extends SignalModule {
     }
 
     static getConfigurationSchema(){
+        /*Useful when you want to build a little editor with sliders
+        that lets you modify your effects rack.
+        You would use this metadata to build the UI.*/
         var conf = super.getConfigurationSchema();
         return Object.assign(conf, {
             type: LowPass.MODULE_NAME,

@@ -1,1 +1,9 @@
 node_modules
+_site
+.sass-cache
+.DS_Store
+css/.DS_Store
+dist/.DS_Store
+src/.DS_Store
+webpack.congif.js
+node_modules
