@@ -2,10 +2,7 @@
   "name": "signaljs",
   "version": "1.0.0",
   "description": "A library that helps apply some common signal processing techniques (filters, modulations) to series of numbers, which can also be processed while they are passed to the library.",
-  "main": "signal.js",
-  "scripts": {
-    "test": "test-signal"
-  },
+  "main": "src/signal.js",
   "repository": {
     "type": "git",
     "url": "http://github.com/mrgreenh/Signal.js"
@@ -17,7 +14,10 @@
     "adsr",
     "noise",
     "numbers",
-    "series"
+    "series",
+    "realtime",
+    "processing",
+    "animation"
   ],
   "author": "Carlo Andrea Conte",
   "license": "ISC",
@@ -36,9 +36,7 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-react": "^3.1.0",
-    "gulp-sass": "^2.1.1",
     "install": "^0.4.2",
-    "material-ui": "^0.14.3",
     "node-libs-browser": "^0.5.2",
     "npm": "^3.7.1",
     "react": "^0.14.7",
@@ -48,8 +46,5 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "nuclear-js": "^1.3.0",
-    "nuclear-js-react-addons": "^0.3.1",
-    "react-addons-shallow-compare": "^0.14.7"
   }
 }
