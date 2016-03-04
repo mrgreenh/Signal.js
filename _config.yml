@@ -10,6 +10,6 @@ github_username:  mrgreenh
 
 # Build settings
 markdown: kramdown
-exclude: [src, signal_editor, node_modules, dist, gulpfile.js, package.json, README.md, Gemfile, Gemfile.lock]
+exclude: [src, signal_editor/src, node_modules, dist, gulpfile.js, package.json, README.md, Gemfile, Gemfile.lock]
 gems:
   - octopress-markdown-tag
