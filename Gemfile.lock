@@ -109,6 +109,8 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     octokit (4.2.0)
       sawyer (~> 0.6.0, >= 0.5.3)
+    octopress-markdown-tag (1.1.2)
+      jekyll (~> 2.0)
     parslet (1.5.0)
       blankslate (~> 2.0)
     posix-spawn (0.3.11)
@@ -141,6 +143,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  octopress-markdown-tag
 
 BUNDLED WITH
    1.11.2
