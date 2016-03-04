@@ -109,9 +109,9 @@ var processingPipeline = new LowPass(newModuleConfiguration)
 
       <pre><code>
 var outputSignal = [];
-var inputSignal = [];
+var inputSignal = [1,1,1,1,1,1,1,1,1,1,1,1];
 
-for(let val of inputSignal){ //Don't try this at home
+for(let val of inputSignal){
     outputSignal.push(processingPipeline.push(val));
 }
       </code></pre>
