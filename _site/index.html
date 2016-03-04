@@ -104,10 +104,13 @@ var modulesNamesList = Signal.getModulesList();
 //Default configuration for first one of the available modules
 var newModuleConfiguration = Signal.getConfigurationSchemaForModule(modulesNamesList[0]);
       </code></pre>
-
+      <p>
       Now you can do one of two things:
-      - Create a configuration, which is basically an array of configurations objects, and pass that to Signal, which will build the pipeline for you
-      - Manually import and initialize modules, and .chain() them.
+      <ul>
+        <li>Create a configuration, which is basically an array of configurations objects, and pass that to Signal, which will build the pipeline for you,</li>
+        <li>Manually import and initialize modules, and .chain() them... This might be useful if you want to do some more complicated stuff.</li>
+      </ul>
+    </p>
 
       <pre><code>
 var processingPipeline = new Signal([
