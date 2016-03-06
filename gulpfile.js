@@ -7,7 +7,7 @@ gulp.task('modules', function() {
     browserify({
     entries: './src/main.js',
     debug: true,
-    transform: [babelify.configure({optional: "runtime"})]
+    transform: [babelify.configure({presets: ["es2015", "stage-1"]})]
     }).bundle()
     .on("error", function (err) { console.log("Error: " + err.message); })
     .pipe(source('signal.js'))
