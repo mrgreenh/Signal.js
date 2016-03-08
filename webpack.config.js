@@ -19,7 +19,8 @@ var config = {
                 loader: 'babel',
                 exclude: /(node_modules)/,
                 query: {
-                    presets: ["es2015", "stage-1"]
+                    presets: ["es2015", "stage-1"],
+                    plugins: ['transform-runtime']
                 }
             }]
     },
