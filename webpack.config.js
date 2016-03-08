@@ -9,7 +9,9 @@ var config = {
     devtool: 'source-map',
     entry: './src/signal.js',
     output: {
-        filename: './dist/bundle.js'
+        filename: './dist/bundle.js',
+        library: "signaljs",
+        libraryTarget: "umd"
     },
     module: {
         loaders: [{
