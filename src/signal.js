@@ -8,7 +8,7 @@ class Signal {
     _parseConfiguration(configuration, prevModule){
         //TODO fix bug that wipes out configuration
         if(!configuration || !configuration.length) return;
-        var newModuleConfiguration = configuration.pop();
+        var newModuleConfiguration = configuration.shift();
         var newModuleClass = ModulesBag.getModulesMap()[newModuleConfiguration.type]
         var newModule = new newModuleClass(newModuleConfiguration);
         if(prevModule) prevModule.chain(newModule);

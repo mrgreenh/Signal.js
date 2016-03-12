@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function _parseConfiguration(configuration, prevModule) {
 	            //TODO fix bug that wipes out configuration
 	            if (!configuration || !configuration.length) return;
-	            var newModuleConfiguration = configuration.pop();
+	            var newModuleConfiguration = configuration.shift();
 	            var newModuleClass = _ModulesBag2.default.getModulesMap()[newModuleConfiguration.type];
 	            var newModule = new newModuleClass(newModuleConfiguration);
 	            if (prevModule) prevModule.chain(newModule);
