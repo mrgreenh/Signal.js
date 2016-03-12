@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var newModuleConfiguration = configuration.pop();
 	            var newModuleClass = _ModulesBag2.default.getModulesMap()[newModuleConfiguration.type];
 	            var newModule = new newModuleClass(newModuleConfiguration);
-	            if (prevModule) prevModule.chain(newModule);
+	            if (prevModule) newModule.chain(prevModule);
 	            this._parseConfiguration(configuration, newModule);
 	
 	            return newModule;
@@ -2063,15 +2063,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (0, _createClass3.default)(SignalModule, [{
 	        key: "queueSample",
 	        value: function queueSample(value) {
+	            var result;
 	            if (isNaN(value)) throw "Signals only accept numbers";
 	            if (this.hasOwnProperty("_chainedModule")) {
-	                var backPropagatedValue = this._chainedModule.queueSample(value);
-	                this._buffer.push(backPropagatedValue);
+	                this._buffer.push(value);
+	                result = this._chainedModule.queueSample(this.output());
 	            } else {
 	                this._buffer.push(value);
+	                result = this.output();
 	            }
-	
-	            return this.output();
+	            return result;
 	        }
 	    }, {
 	        key: "output",
