@@ -24,6 +24,79 @@ layout: home
 
       <p>Turns out you can use this for javascript animations in a broader sense, for anything related to user interactions that produce streams of numbers, for example scrolling or accelerometer data. But I might write about some better examples of that sort later.</p>
 
+      <h2>Usage</h2>
+
+      <p>How about a:</p>
+      <pre>
+npm install signaljs --save
+      </pre>
+
+      <p>And then something to make sure all went well:</p>
+
+      <pre><code>
+import Signal from 'signaljs'
+//Get a list of available modules
+var modulesNamesList = Signal.getModulesList();
+      </code></pre>
+
+      <p>That gets the configuration schemas for the available modules. This will contain some default values that you can use as configuration for a module instance. It will also contain extra information that can turn out useful if you want to build some visual configuration tool. Like the one I built on top of this page. But that I am too lazy right now to generalize it and make it useful :) But if you need something like that just ask and I'll feel motivated enough to do it!</p>
+
+      <p>
+      Now you can do one of two things:
+      <ul>
+        <li>Create a configuration, which is basically an array of configuration objects, and pass that to Signal, which will build the pipeline for you,</li>
+        <li>Manually import and initialize modules, and .chain() them... This might be useful if you want to do some more complicated stuff.</li>
+      </ul>
+    </p>
+
+      <pre><code>
+import Signal from 'signaljs'
+
+var thresholdConfig = Signal.getConfigurationSchemaForModule("Threshold");
+thresholdConfig.threshold.value = 5;
+
+var lowPassConfig = Signal.getConfigurationSchemaForModule("LowPass");
+
+var signal = new Signal([lowPassConfig, thresholdConfig]);
+
+var outputSignal = [];
+var inputSignal = [1,2,3,4,5,100,7,8,9];
+
+for(let val of inputSignal){ //Don't try this at home
+    outputSignal.push(signal.push(val));
+}
+
+console.log(outputSignal);
+//[0, 0, 0, 0, 0, 19.166666666666668, 17.428571428571427, 16.25, 15.444444444444445]
+</code></pre>
+
+<p>OR you can do this too:</p>
+
+<pre><code>
+import Signal from 'signaljs'
+
+var Threshold = Signal.getModule("Threshold");
+var thresholdConfig = Signal.getConfigurationSchemaForModule("Threshold");
+thresholdConfig.threshold.value = 5;
+
+var LowPass = Signal.getModule("LowPass");
+var lowPassConfig = Signal.getConfigurationSchemaForModule("LowPass");
+
+var lowPass = new LowPass(lowPassConfig);
+var threshold = new Threshold(thresholdConfig);
+lowPass.chain(threshold);
+
+var outputSignal = [];
+var inputSignal = [1,2,3,4,5,100,7,8,9];
+
+for(let val of inputSignal){
+    outputSignal.push(lowPass.queueSample(val));
+}
+
+console.log(outputSignal);
+//[0, 0, 0, 0, 0, 19.166666666666668, 17.428571428571427, 16.25, 15.444444444444445]
+      </code></pre>
+
       <h2>Writing a new module</h2>
       <p>This is an example on how you define a module, and this one is literally the most complicated there is at the time of writing:</p>
       <pre><code>
@@ -69,79 +142,9 @@ LowPass.MODULE_NAME = "LowPass";
 export default LowPass;
       </code></pre>
 
-      <p>And add it to the modules bag ModulesBag.js.</p>
+      <p>And add it to the modules bag ModulesBag.js. Or forget to do it and bang your head on the keyboard until you remember about it. Such great design.</p>
 
-      <h2>Usage</h2>
-
-      <p>How about a:</p>
-      <pre>
-npm install signaljs --save
-      </pre>
-
-      <p>And then something to make sure all went well:</p>
-
-      <pre><code>
-import Signal from 'signaljs'
-//Get a list of available modules
-var modulesNamesList = Signal.getModulesList();
-      </code></pre>
-
-      That gets the configuration schemas for the available modules. This will contain some default values that you can use as configuration for a module instance. It will also contain extra information that can turn out useful if you want to build some visual configuration tool. Like the one I built on top of this page. But that I am too lazy right now to generalize and make it useful :) But if you need something like that just ask and I'll feel motivated enough to do it!
-
-      <p>
-      Now you can do one of two things:
-      <ul>
-        <li>Create a configuration, which is basically an array of configurations objects, and pass that to Signal, which will build the pipeline for you,</li>
-        <li>Manually import and initialize modules, and .chain() them... This might be useful if you want to do some more complicated stuff.</li>
-      </ul>
-    </p>
-
-      <pre><code>
-import Signal from 'signaljs'
-
-var Threshold = Signal.getModule("Threshold");
-var thresholdConfig = Signal.getConfigurationSchemaForModule("Threshold");
-thresholdConfig.threshold.value = 5;
-
-var LowPass = Signal.getModule("LowPass");
-var lowPassConfig = Signal.getConfigurationSchemaForModule("LowPass");
-
-var lowPass = new LowPass(lowPassConfig);
-var threshold = new Threshold(thresholdConfig);
-lowPass.chain(threshold);
-
-var outputSignal = [];
-var inputSignal = [1,2,3,4,5,100,7,8,9];
-
-for(let val of inputSignal){
-    outputSignal.push(lowPass.queueSample(val));
-}
-
-console.log(outputSignal);
-//[0, 0, 0, 0, 0, 19.166666666666668, 17.428571428571427, 16.25, 15.444444444444445]
-
-
-//-----------------------  OR
-
-var thresholdConfig = Signal.getConfigurationSchemaForModule("Threshold");
-thresholdConfig.threshold.value = 5;
-
-var lowPassConfig = Signal.getConfigurationSchemaForModule("LowPass");
-
-var signal = new Signal([lowPassConfig, thresholdConfig]);
-
-var outputSignal = [];
-var inputSignal = [1,2,3,4,5,100,7,8,9];
-
-for(let val of inputSignal){ //Don't try this at home
-    outputSignal.push(signal.push(val));
-}
-
-console.log(outputSignal);
-//[0, 0, 0, 0, 0, 19.166666666666668, 17.428571428571427, 16.25, 15.444444444444445]
-      </code></pre>
-
-      <p>Go build bautiful things! Or ugly ones! Just.... go, nothing left to read here. Oh yeah wait the license, which basically means do whatever you want:</p>
+      <p>Now go build bautiful things! Or ugly ones! Just.... go, nothing left to read here. Except the license, which basically means do whatever you want:</p>
 
       <h2>License</h2>
       The MIT License (MIT)
