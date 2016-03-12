@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var newModuleConfiguration = configuration.pop();
 	            var newModuleClass = _ModulesBag2.default.getModulesMap()[newModuleConfiguration.type];
 	            var newModule = new newModuleClass(newModuleConfiguration);
-	            if (prevModule) prevModule.chain(newModule);
+	            if (prevModule) newModule.chain(prevModule);
 	            this._parseConfiguration(configuration, newModule);
 	
 	            return newModule;
