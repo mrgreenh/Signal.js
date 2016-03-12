@@ -1,6 +1,6 @@
 {
   "name": "signaljs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library that helps apply some common signal processing techniques (filters, modulations) to series of numbers, which can also be processed while they are passed to the library.",
   "main": "dist/bundle.js",
   "repository": {
