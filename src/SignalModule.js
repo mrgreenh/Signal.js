@@ -6,15 +6,16 @@ class SignalModule {
     }
 
     queueSample(value){
+        var result;
         if(isNaN(value)) throw "Signals only accept numbers";
         if(this.hasOwnProperty("_chainedModule")){
-            let backPropagatedValue = this._chainedModule.queueSample(value);
-            this._buffer.push(backPropagatedValue);
+            this._buffer.push(value);
+            result = this._chainedModule.queueSample(this.output());
         }else{
             this._buffer.push(value);
+            result = this.output();
         }
-
-        return this.output();
+        return result;
     }
 
     output(){
