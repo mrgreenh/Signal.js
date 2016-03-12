@@ -11,7 +11,7 @@ class Signal {
         var newModuleConfiguration = configuration.pop();
         var newModuleClass = ModulesBag.getModulesMap()[newModuleConfiguration.type]
         var newModule = new newModuleClass(newModuleConfiguration);
-        if(prevModule) prevModule.chain(newModule);
+        if(prevModule) newModule.chain(prevModule);
         this._parseConfiguration(configuration, newModule);
 
         return newModule;
