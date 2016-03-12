@@ -45,7 +45,7 @@
       <img src="/Signal.js/lowpass.png" alt="Square wave after lowpass" />
       But then say your musical note needs to represent a wobbly noisy sound. Then you might want to blend in some white noise, maybe offset this stream of numbers and amplify it a bit. And then say you want to add a delay... The list goes on. What I needed was some library that quickly lets me define filters and effects similar to the ones I would find in a sound effects rack. And that in the same way lets me pipe them one after the other. So that's what Signal.js is.</p>
 
-      <p>Turns out you can use this for javascript animations in a broader sense, for anything related to user interactions that produce streams of numbers, for example scrolling or accelerometer data. But I might write an article with some better examples of that sort later. Maybe one of those Medium posts because it's so "in" now to write Medium posts =)</p>
+      <p>Turns out you can use this for javascript animations in a broader sense, for anything related to user interactions that produce streams of numbers, for example scrolling or accelerometer data. But I might write about some better examples of that sort later.</p>
 
       <h2>Writing a new module</h2>
       <p>This is an example on how you define a module, and this one is literally the most complicated there is at the time of writing:</p>
@@ -55,12 +55,14 @@ import SignalModule from '../SignalModule'
 class LowPass extends SignalModule {
 
     constructor(configuration){
+        /*SignalModule always gets initialized with a buffer, basically just a linked list of values of fixed length-
+        When something gets pushed into a buffer that has reached its size limit, the oldest value is dropped.*/
         super(configuration.bufferSize.value);
-        //Nothing else to add for now but other modules might have more to say
+        //Nothing else to add in this constructor but other modules might have more to say.
     }
 
     _processOutput(){
-        //One new value was just pushed into the buffer. The output on the other side is...
+        //Computes the output. Yeah because you also need that.
         var sum = 0;
         for(let value of this._buffer.iterate()){
             sum += value;
@@ -90,20 +92,25 @@ LowPass.MODULE_NAME = "LowPass";
 export default LowPass;
       </code></pre>
 
+      <p>And add it to the modules bag ModulesBag.js.</p>
+
       <h2>Usage</h2>
 
+      <p>How about a:</p>
+      <pre>
+npm install signaljs --save
+      </pre>
+
+      <p>And then something to make sure all went well:</p>
+
       <pre><code>
-import Signal from 'path/to/signal'
+import Signal from 'signaljs'
 //Get a list of available modules
 var modulesNamesList = Signal.getModulesList();
       </code></pre>
 
-      Get the configuration schema for some module. This will contain some default values that you can use as configuration for a module instance. It will also contain extra information that can turn out useful if you want to build some visual configuration tool.
+      That gets the configuration schemas for the available modules. This will contain some default values that you can use as configuration for a module instance. It will also contain extra information that can turn out useful if you want to build some visual configuration tool. Like the one I built on top of this page. But that I am too lazy right now to generalize and make it useful :) But if you need something like that just ask and I'll feel motivated enough to do it!
 
-      <pre><code>
-//Default configuration for first one of the available modules
-var newModuleConfiguration = Signal.getConfigurationSchemaForModule(modulesNamesList[0]);
-      </code></pre>
       <p>
       Now you can do one of two things:
       <ul>
@@ -113,31 +120,54 @@ var newModuleConfiguration = Signal.getConfigurationSchemaForModule(modulesNames
     </p>
 
       <pre><code>
-var processingPipeline = new Signal([
-                                        newModuleConfiguration,
-                                        otherNewModuleConfiguration
-                                    ]);
+import Signal from 'signaljs'
 
-//OR
+var Threshold = Signal.getModule("Threshold");
+var thresholdConfig = Signal.getConfigurationSchemaForModule("Threshold");
+thresholdConfig.threshold.value = 5;
 
-var LowPass = Signal.getModule(moduleNamesList[0]);
-var WhiteNoise = Signal.getModule("WhiteNoise");
-var whiteNoiseConfig = Signal.gerConfigurationSchemaForModule("WhiteNoise");
-var processingPipeline = new LowPass(newModuleConfiguration)
-                                    .chain(new WhiteNoise(whiteNoiseConfig));
-      </code></pre>
+var LowPass = Signal.getModule("LowPass");
+var lowPassConfig = Signal.getConfigurationSchemaForModule("LowPass");
 
-      Finally, start using your pipeline by pushing value. Each .push(newValue) will return the result of such value going through all filters in your pipeline.
+var lowPass = new LowPass(lowPassConfig);
+var threshold = new Threshold(thresholdConfig);
+lowPass.chain(threshold);
 
-
-      <pre><code>
 var outputSignal = [];
-var inputSignal = [1,1,1,1,1,1,1,1,1,1,1,1];
+var inputSignal = [1,2,3,4,5,100,7,8,9];
 
 for(let val of inputSignal){
-    outputSignal.push(processingPipeline.push(val));
+    outputSignal.push(lowPass.queueSample(val));
 }
+
+console.log(outputSignal);
+//[0, 0, 0, 0, 0, 19.166666666666668, 17.428571428571427, 16.25, 15.444444444444445]
+
+
+//-----------------------  OR
+
+var thresholdConfig = Signal.getConfigurationSchemaForModule("Threshold");
+thresholdConfig.threshold.value = 5;
+
+var lowPassConfig = Signal.getConfigurationSchemaForModule("LowPass");
+
+var signal = new Signal([lowPassConfig, thresholdConfig]);
+
+var outputSignal = [];
+var inputSignal = [1,2,3,4,5,100,7,8,9];
+
+for(let val of inputSignal){ //Don't try this at home
+    outputSignal.push(signal.push(val));
+}
+
+console.log(outputSignal);
+//[0, 0, 0, 0, 0, 19.166666666666668, 17.428571428571427, 16.25, 15.444444444444445]
       </code></pre>
+
+      <p>Go build bautiful things! Or ugly ones! Just.... go, nothing left to read here. Oh yeah wait the license, which basically means do whatever you want:</p>
+
+      <h2>License</h2>
+      The MIT License (MIT)
 
     </section>
   </div>
@@ -152,14 +182,6 @@ for(let val of inputSignal){
   <div class="wrapper">
 
     <h2 class="footer-heading">Signal.js</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col  footer-col-1">
-        <ul class="contact-list">
-          <li>Signal.js</li>
-          <li><a href="mailto:carloandreaconte@icloud.com">carloandreaconte@icloud.com</a></li>
-        </ul>
-      </div>
 
       <div class="footer-col  footer-col-2">
         <ul class="social-media-list">
