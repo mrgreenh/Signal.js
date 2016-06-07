@@ -4,6 +4,11 @@
 @charset "utf-8";
 
 
+.signal-editor>ul>li:first-of-type {display: none;}
+.sensational-header {
+  padding: 30px 30px 0px; !important
+}
+
 
 // Our variables
 $base-font-family: Helvetica, Arial, sans-serif;
