@@ -6,6 +6,7 @@ import ImmutableComponent from './ImmutableComponent.js'
 class SignalEditor extends ImmutableComponent{
     render(){
         var modules = this.props.modules.map((conf, index) => {
+            if(conf.type == "WhiteNoise") return null;
             return (
                     <li key={index}>
                       <SignalModuleEditor configuration={conf} moduleIndex={index}/>
